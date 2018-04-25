@@ -29,7 +29,7 @@ class SevenSeg {
   int waitTime = 1;
   
   void zero(int segmentNumber);
-  void SevenSeg::one(int segmentNumber);
+  void one(int segmentNumber);
   void two(int segmentNumber);
   void three(int segmentNumber);
   void four(int segmentNumber);
@@ -42,7 +42,8 @@ class SevenSeg {
   private:
    int _selector;
    bool _msg;
-
+   int _segmentNumber;
+ 
    
 };
  

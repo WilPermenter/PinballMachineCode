@@ -22,7 +22,7 @@ void SevenSeg::begin(int baudRate){
 digitalWrite(segmentNumber,LOW);
 
 
-    Serial.println(segmentNumber, "Zero");
+Serial.println(segmentNumber, "Zero");
   
 digitalWrite(A,HIGH);
 delay(waitTime); 

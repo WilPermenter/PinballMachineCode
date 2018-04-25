@@ -94,6 +94,9 @@ void setup() {
 
 void loop() {
 
+
+
+
 // Score Detection
 
 pointAdd = analogRead(scorePin); //reads For point
@@ -135,27 +138,27 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent){ //Will Run if was +10
 //Display Score 
 
 int  x = 1;
-int  y = 4;
+int  y = 3;
 
 
   if(x){
-    sevenseg::zero(y);
+    sevenseg.zero(y);
   }else if (x){
-    sevenseg one(y);
+    sevenseg.one(y);
   }else if (x){
-    sevenseg two(y);
+    sevenseg.two(y);
   }else if (x){
-    sevenseg four(y);
+    sevenseg.four(y);
   }else if (x){
-    SevenSeg five(y);
+    sevenseg.five(y);
   }else if (x){
-    SevenSeg six(y);
+    sevenseg.six(y);
   }else if (x){
-    SevenSeg seven();
+    sevenseg.seven(y);
   }else if (x){
-    SevenSeg eight();
+    sevenseg.eight(y);
   }else if (x){
-    SevenSeg nine();
+    sevenseg.nine(y\);
   }else{
     
   }
