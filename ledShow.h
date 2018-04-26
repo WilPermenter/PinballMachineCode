@@ -20,7 +20,7 @@ class ledShow {
   ledShow(bool displayMsg = false);
   void begin(int baudRate=9600);
 
-  void startup();
+  void startUp();
   void ledLoop();
   void loss();
 

@@ -91,14 +91,16 @@ void setup() {
  digitalWrite(3,HIGH);
  digitalWrite(4,HIGH);
  digitalWrite(5,HIGH);
+
+//run start up animation 
+
+
+
+
  
 }
   
-
-
 void loop() {
-
-
 
 
 // Score Detection
@@ -167,9 +169,6 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
  
 displayLoop: // for goto
 
-    if(1){   
-    
-   }
    
   if(scoreNumber == 0){
     sevenseg.zero(scoreDisplay);
@@ -195,7 +194,7 @@ displayLoop: // for goto
 
   scoreDisplay += 1;  // counts what 7 seg we are displaying
   
-  if( scoreDisplay >= 4){ // makes sure we have turned all of them on once
+  if( scoreDisplay >= 5){ // makes sure we have turned all of them on once
     goto displayLoop;
 
     scoreDisplay = 2;        // resets scoreDisplay and will go back to top

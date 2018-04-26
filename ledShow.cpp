@@ -11,4 +11,8 @@ void ledShow::begin(int baudRate){
   }
 }
 
+void ledShow::startUp(){ // put led stuff in here
+  
+}
+
 
