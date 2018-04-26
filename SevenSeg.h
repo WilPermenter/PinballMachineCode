@@ -26,7 +26,7 @@ class SevenSeg {
   int F = 11;
   int G = 12;
 
-  int waitTime = 1;
+  int waitTime = 500;
   
   void zero(int segmentNumber);
   void one(int segmentNumber);

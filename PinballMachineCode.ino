@@ -5,8 +5,6 @@
  *  ability to add score and controll lights. Built for Arduino UNO
  */
 
-
-
 //used to better control 7 Segment LED's
 
 #include "SevenSeg.h"
@@ -32,7 +30,7 @@ int waitTime = 1; // sets refreshRate, Lowest = 1
     1  = 2
     2  = 3
     3  = 4
-    5  = 6
+    4  = 5
  */
  int A = 6;
  int B = 7;
@@ -43,8 +41,8 @@ int waitTime = 1; // sets refreshRate, Lowest = 1
  int G = 12;
 
 //Score Var Setup
-int pointAddTen = 500;  //Analog Input for +10
-int pointAddTwent = 800;//Analog Input for + 20
+int pointAddTen = 600;  //Analog Input for +10
+int pointAddTwent = 650;//Analog Input for + 20
 int pointAdd = 0; // Storage Var
 // Display Var Most Right will be static 0
 
@@ -55,12 +53,18 @@ int scoreThousPlace = 0; // Most Left One  1000's Place
 
 bool scoreChange = true; //If score needs to be updated will be true
 
+int scoreDisplay = 2; //Tells what segment to turn on based off Pin Numbe(look Above);
 
+int scoreNumber = 0; //the number to be displayed
+
+int latch = 0; //latching for preventing over count on score
+
+    
 void setup() {
 
   //setup
 
-  sevenseg.begin(9200); //starts serial
+  sevenseg.begin(9200); //starts serial dont ask why this is done 2x
   ledshow.begin(9200); // starts serial
   
   //Pins For Seven Seg 
@@ -101,22 +105,40 @@ void loop() {
 
 pointAdd = analogRead(scorePin); //reads For point
 
-if(pointAdd > pointAddTen && pointAdd < pointAddTwent){ //Will Run if was +10
+if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run if was +10
   scoreOnePlace += 1; //Adds Points to Score
   
   scoreChange = 1; //Tells us to update Display
-  }else if(pointAdd > pointAddTwent){ //Will run if +20
+
+  latch =1; //sets latch to 1 bc a hit was detecteed
+  }else if(pointAdd > pointAddTwent && latch == 0){ //Will run if +20
   scoreOnePlace += 2; //Adds Points to Score
 
   scoreChange = true;
+
+  latch = 1; // sets latch to 1 bc hit was detected
   }else{ 
-    scoreChange = false;
-  Serial.print("Score not updated Skiped");
+    scoreChange = false; // bool to skip score if no change needed ( this makes the leds not flicker as much);
+  
+   if (pointAdd < 400){ // this de latches the scoreing stuff
+    latch = 0;
+  } 
+  Serial.println(scoreThousPlace);    // Prints Score
+  Serial.print(scoreHundPlace);
+  Serial.print(scoreTenPlace);
+  Serial.print(scoreOnePlace);
   }
 
-//ScoreMaths
- if(scoreChange){                    // skips steps if change not needed
   
+
+//ScoreMaths
+ if(scoreChange){                    // skips steps if change not needed, scoreChange is a bool so it will be true of false
+
+  /* 
+   *  I know this part is basiclly reinventing the wheel but i feel this gives more control over scores. Its basicly just 
+   *  going in and looking at the specific place value of our score.
+   */
+   
  if(scoreOnePlace >= 10){                     //if ones place is 10 then will carry over to tens place scoreTwo
   
   scoreOnePlace -= 10;
@@ -135,38 +157,50 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent){ //Will Run if was +10
 }
 
 }
-//Display Score 
-
-int  x = 1;
-int  y = 3;
-
-
-  if(x){
-    sevenseg.zero(y);
-  }else if (x){
-    sevenseg.one(y);
-  }else if (x){
-    sevenseg.two(y);
-  }else if (x){
-    sevenseg.four(y);
-  }else if (x){
-    sevenseg.five(y);
-  }else if (x){
-    sevenseg.six(y);
-  }else if (x){
-    sevenseg.seven(y);
-  }else if (x){
-    sevenseg.eight(y);
-  }else if (x){
-    sevenseg.nine(y\);
-  }else{
-    
-  }
-
+//Display Score                                // Need to get it to decide what its doing with its life...
+   
 /*
  * This will be using custom Library that is a work in progress.
  * It is written for a 4x 7 segment display part no. HS420561K-32
  */
+
+ 
+displayLoop: // for goto
+
+    if(1){   
+    
+   }
+   
+  if(scoreNumber == 0){
+    sevenseg.zero(scoreDisplay);
+  }else if (scoreNumber == 1){
+    sevenseg.one(scoreDisplay);
+  }else if (scoreNumber == 2){
+    sevenseg.two(scoreDisplay);
+  }else if( scoreNumber == 3){
+    sevenseg.three(scoreDisplay);
+  }else if (scoreNumber == 4){
+    sevenseg.four(scoreDisplay);
+  }else if (scoreNumber == 5){
+    sevenseg.five(scoreDisplay);
+  }else if (scoreNumber == 6){
+    sevenseg.six(scoreDisplay);
+  }else if (scoreNumber == 7){
+    sevenseg.seven(scoreDisplay);
+  }else if (scoreNumber == 8){
+    sevenseg.eight(scoreDisplay);
+  }else{                                 // if its not 0-8 it must be 9 so we can use an else here
+    sevenseg.nine(scoreDisplay);
+  }
+
+  scoreDisplay += 1;  // counts what 7 seg we are displaying
+  
+  if( scoreDisplay >= 4){ // makes sure we have turned all of them on once
+    goto displayLoop;
+
+    scoreDisplay = 2;        // resets scoreDisplay and will go back to top
+  } // else will go to top
+
 
 
   

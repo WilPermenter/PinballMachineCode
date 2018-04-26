@@ -7,7 +7,7 @@ SevenSeg::SevenSeg(bool displayMsg){
 void SevenSeg::begin(int baudRate){
   Serial.begin(baudRate);
   if(_msg) {
-    Serial.println("SevenSeg Library Initiated");
+    //Serial.println("SevenSeg Library Initiated");
   }
 }
 
@@ -22,30 +22,30 @@ void SevenSeg::begin(int baudRate){
 digitalWrite(segmentNumber,LOW);
 
 
-Serial.println(segmentNumber, "Zero");
+//Serial.println(segmentNumber, "Zero");
   
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(E,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(E,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(segmentNumber,HIGH);
@@ -56,11 +56,11 @@ void SevenSeg::one(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
   
  digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(5,HIGH);
@@ -72,23 +72,23 @@ void SevenSeg::two(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
 
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
 digitalWrite(E,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(E,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(segmentNumber,HIGH);
 }
 
@@ -97,23 +97,23 @@ void SevenSeg::three(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
   
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
 digitalWrite(segmentNumber,HIGH);
@@ -125,19 +125,19 @@ void SevenSeg::four(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
 digitalWrite(segmentNumber,HIGH);
@@ -149,23 +149,23 @@ void SevenSeg::five(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
 
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
 digitalWrite(segmentNumber,HIGH); 
@@ -178,27 +178,27 @@ digitalWrite(segmentNumber,LOW);
 digitalWrite(5,LOW);
   
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(E,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(E,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
   
@@ -212,15 +212,15 @@ digitalWrite(segmentNumber,LOW);
 digitalWrite(5,LOW);
   
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(5,HIGH);
@@ -233,31 +233,31 @@ void SevenSeg::eight(int segmentNumber){
 digitalWrite(segmentNumber,LOW);
 
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(E,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(E,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
   
@@ -271,23 +271,23 @@ digitalWrite(segmentNumber,LOW);
 digitalWrite(5,LOW);
  
 digitalWrite(A,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(F,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(F,LOW);
 
 digitalWrite(G,HIGH);
-delay(waitTime); 
+delayMicroseconds(waitTime); 
 digitalWrite(G,LOW);
 
   
