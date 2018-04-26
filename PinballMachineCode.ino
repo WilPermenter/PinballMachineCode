@@ -95,9 +95,6 @@ void setup() {
 //run start up animation 
 
 
-
-
- 
 }
   
 void loop() {
@@ -110,7 +107,7 @@ pointAdd = analogRead(scorePin); //reads For point
 if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run if was +10
   scoreOnePlace += 1; //Adds Points to Score
   
-  scoreChange = 1; //Tells us to update Display
+  scoreChange = true; //Tells us to update Display
 
   latch =1; //sets latch to 1 bc a hit was detecteed
   }else if(pointAdd > pointAddTwent && latch == 0){ //Will run if +20
@@ -125,10 +122,10 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
    if (pointAdd < 400){ // this de latches the scoreing stuff
     latch = 0;
   } 
-  Serial.println(scoreThousPlace);    // Prints Score
+   Serial.print(scoreThousPlace);    // Prints Score
   Serial.print(scoreHundPlace);
   Serial.print(scoreTenPlace);
-  Serial.print(scoreOnePlace);
+   Serial.println(scoreOnePlace); 
   }
 
   
@@ -166,11 +163,21 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
  * It is written for a 4x 7 segment display part no. HS420561K-32
  */
 
- 
-displayLoop: // for goto
 
+ 
+ displayLoop: // for goto
+
+   if(scoreDisplay == 2){
+    scoreNumber = scoreThousPlace;
+   }else if(scoreDisplay == 3){
+    scoreNumber = scoreHundPlace;
+   }else if(scoreDisplay == 4){
+    scoreNumber = scoreTenPlace;
+   }else if(scoreDisplay == 5){
+    scoreNumber = scoreOnePlace;
+   }
    
-  if(scoreNumber == 0){
+   if(scoreNumber == 0){
     sevenseg.zero(scoreDisplay);
   }else if (scoreNumber == 1){
     sevenseg.one(scoreDisplay);
@@ -188,17 +195,18 @@ displayLoop: // for goto
     sevenseg.seven(scoreDisplay);
   }else if (scoreNumber == 8){
     sevenseg.eight(scoreDisplay);
-  }else{                                 // if its not 0-8 it must be 9 so we can use an else here
+  }else if(scoreNumber == 9){                                 // if its not 0-8 it must be 9 so we can use an else here
     sevenseg.nine(scoreDisplay);
-  }
+  } 
 
   scoreDisplay += 1;  // counts what 7 seg we are displaying
   
-  if( scoreDisplay >= 5){ // makes sure we have turned all of them on once
+ if( scoreDisplay <= 5){ // makes sure we have turned all of them on once
     goto displayLoop;
-
+} 
     scoreDisplay = 2;        // resets scoreDisplay and will go back to top
-  } // else will go to top
+  // else will go to top
+
 
 
 
@@ -206,4 +214,5 @@ displayLoop: // for goto
 
 
 }
+
 
