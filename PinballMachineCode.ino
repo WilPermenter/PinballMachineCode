@@ -1,6 +1,6 @@
 /* 
  *  Pinball Machine- Enggineering II , Wil Permenter 
- *  Created 4/18/2018 End xx/xx/xxx
+ *  Created 4/18/2018 End xx/xx/xxxx
  *  Description: This Code is a pinball machine code and has the 
  *  ability to add score and controll lights. Built for Arduino UNO
  */
@@ -106,13 +106,13 @@ void loop() {
 pointAdd = analogRead(scorePin); //reads For point
 
 if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run if was +10
-  scoreOnePlace += 1; //Adds Points to Score
+  scoreTenPlace += 1; //Adds Points to Score
   
   scoreChange = true; //Tells us to update Display
 
   latch =1; //sets latch to 1 bc a hit was detecteed
   }else if(pointAdd > pointAddTwent && latch == 0){ //Will run if +20
-  scoreOnePlace += 2; //Adds Points to Score
+  scoreTenPlace += 2; //Adds Points to Score
 
   scoreChange = true;
 
@@ -123,16 +123,15 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
    if (pointAdd < 400){ // this de latches the scoreing stuff
     latch = 0;
   } 
-   Serial.print(scoreThousPlace);    // Prints Score
-  Serial.print(scoreHundPlace);
-  Serial.print(scoreTenPlace);
-   Serial.println(scoreOnePlace); 
+
   }
 
   
 
 //ScoreMaths
  if(scoreChange){                    // skips steps if change not needed, scoreChange is a bool so it will be true of false
+
+
 
   /* 
    *  I know this part is basiclly reinventing the wheel but i feel this gives more control over scores. Its basicly just 
@@ -146,15 +145,22 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
   
 
   
-  }else if(scoreTenPlace >= 10){                     //if tens place is 10 then will carry over to hundreds place scoreTwo
+  }
+  if(scoreTenPlace >= 10){                     //if tens place is 10 then will carry over to hundreds place scoreTwo
   
   scoreTenPlace  -= 10;
   scoreHundPlace  += 1;
-}else if(scoreHundPlace >= 10){                     //if tens place is 10 then will carry over to hundreds place scoreTwo
+}
+if(scoreHundPlace >= 10){                     //if tens place is 10 then will carry over to hundreds place scoreTwo
   
   scoreHundPlace  -= 10;
   scoreThousPlace  += 1;
 }
+
+   Serial.print(scoreThousPlace);    // Prints Score
+  Serial.print(scoreHundPlace);
+  Serial.print(scoreTenPlace);
+   Serial.println(scoreOnePlace); 
 
 }
 //Display Score                                //Bug where "1" will display a 0 and will shaddow 1's place
@@ -178,7 +184,7 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
     scoreNumber = scoreOnePlace;
    }
    
-   if(scoreNumber == 0){
+   if(scoreNumber == 0){           // will print 1 segment at a time and its coraspoindg number. Refer to SevenSeg.cpp for the code.
     sevenseg.zero(scoreDisplay);
   }else if (scoreNumber == 1){
     sevenseg.one(scoreDisplay);

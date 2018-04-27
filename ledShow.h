@@ -28,7 +28,7 @@ class ledShow {
   int F = 11;
   int G = 12;
 
-  int waitTime = 50000;
+  int waitTime = 500;
 
   void startUp();
   void ledLoop();

@@ -19,27 +19,27 @@ digitalWrite(3,LOW);
 digitalWrite(2,LOW);
 
 digitalWrite(A,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(A,LOW);
 
 digitalWrite(B,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(B,LOW);
 
 digitalWrite(C,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(C,LOW);
 
 digitalWrite(D,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(D,LOW);
 
 digitalWrite(E,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(E,LOW);
 
 digitalWrite(F,HIGH);
-delayMicroseconds(waitTime); 
+delay(waitTime); 
 digitalWrite(F,LOW);
 
 

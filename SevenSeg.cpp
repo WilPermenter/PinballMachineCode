@@ -233,7 +233,7 @@ digitalWrite(E,LOW);
 digitalWrite(F,LOW);
 digitalWrite(G,LOW);
 
-digitalWrite(5,LOW);
+
   
 digitalWrite(A,HIGH);
 delayMicroseconds(waitTime); 
@@ -275,7 +275,7 @@ digitalWrite(E,LOW);
 digitalWrite(F,LOW);
 digitalWrite(G,LOW);
 
-digitalWrite(5,LOW);
+
   
 digitalWrite(A,HIGH);
 delayMicroseconds(waitTime); 
@@ -289,8 +289,7 @@ digitalWrite(C,HIGH);
 delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
-digitalWrite(5,HIGH);
-  
+ 
 digitalWrite(segmentNumber,HIGH);   
 }
 
