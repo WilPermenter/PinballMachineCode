@@ -20,6 +20,16 @@ class ledShow {
   ledShow(bool displayMsg = false);
   void begin(int baudRate=9600);
 
+  int A = 6;
+  int B = 7;
+  int C = 8;
+  int D = 9;
+  int E = 10;
+  int F = 11;
+  int G = 12;
+
+  int waitTime = 50000;
+
   void startUp();
   void ledLoop();
   void loss();

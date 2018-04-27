@@ -94,6 +94,7 @@ void setup() {
 
 //run start up animation 
 
+ledshow.startUp();
 
 }
   
@@ -156,7 +157,7 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
 }
 
 }
-//Display Score                                // Need to get it to decide what its doing with its life...
+//Display Score                                //Bug where "1" will display a 0 and will shaddow 1's place
    
 /*
  * This will be using custom Library that is a work in progress.
@@ -173,7 +174,7 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
     scoreNumber = scoreHundPlace;
    }else if(scoreDisplay == 4){
     scoreNumber = scoreTenPlace;
-   }else if(scoreDisplay == 5){
+   }else if(scoreDisplay == 5){    //set as else if to try to fix problem did not work so just goint to leave it cause why not :I
     scoreNumber = scoreOnePlace;
    }
    
@@ -195,7 +196,7 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
     sevenseg.seven(scoreDisplay);
   }else if (scoreNumber == 8){
     sevenseg.eight(scoreDisplay);
-  }else if(scoreNumber == 9){                                 // if its not 0-8 it must be 9 so we can use an else here
+  }else if (scoreNumber == 9){                                 //leaveing else if for debugging cause why not
     sevenseg.nine(scoreDisplay);
   } 
 
@@ -206,12 +207,6 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
 } 
     scoreDisplay = 2;        // resets scoreDisplay and will go back to top
   // else will go to top
-
-
-
-
-  
-
 
 }
 

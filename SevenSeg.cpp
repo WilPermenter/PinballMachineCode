@@ -78,7 +78,7 @@ digitalWrite(C,HIGH);
 delayMicroseconds(waitTime); 
 digitalWrite(C,LOW);
 
-digitalWrite(5,HIGH);
+digitalWrite(segmentNumber,HIGH);
 }
 
 
