@@ -23,8 +23,8 @@ int waitTime = 1; // sets refreshRate, Lowest = 1
 //Pin Var Setup
 
  int scorePin = A0; //Used for point/hit detection
-
-
+ int spinnyPin = A1; // Hit Detection for spinny thing
+ 
 //Connect these pins to the coraspoinding spots on display
 /*
     1  = 2
@@ -44,6 +44,7 @@ int waitTime = 1; // sets refreshRate, Lowest = 1
 int pointAddTen = 600;  //Analog Input for +10
 int pointAddTwent = 650;//Analog Input for + 20
 int pointAdd = 0; // Storage Var
+int pointSpinnyLast = 0; // Will store the var and will be used to compare to the last 
 // Display Var Most Right will be static 0
 
 int scoreOnePlace = 0; // Second From Right 1's place
@@ -59,6 +60,7 @@ int scoreNumber = 0; //the number to be displayed
 
 int latch = 0; //latching for preventing over count on score
 
+int latch2 = 0;//
     
 void setup() {
 
@@ -94,7 +96,7 @@ void setup() {
 
 //run start up animation 
 
-ledshow.startUp();
+ledshow.startUp();  //does start up animation
 
 }
   
@@ -119,6 +121,17 @@ if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run
   latch = 1; // sets latch to 1 bc hit was detected
   }else{ 
     scoreChange = false; // bool to skip score if no change needed ( this makes the leds not flicker as much);
+
+int   spinnyNum = analogRead(spinnyPin);
+   spinnyNum -= 1006; 
+  if(spinnyNum > 10 && latch2 == 1){
+    scoreChange = true;
+    scoreOnePlace += 5;// adds ~ 5 points per spin might be off a bit due to delays in our sevenseg.cpp
+    latch2 = 0;
+  }
+  if(spinnyNum <10){
+    latch2= 1;
+  }
   
    if (pointAdd < 400){ // this de latches the scoreing stuff
     latch = 0;
@@ -163,7 +176,7 @@ if(scoreHundPlace >= 10){                     //if tens place is 10 then will ca
    Serial.println(scoreOnePlace); 
 
 }
-//Display Score                                //Bug where "1" will display a 0 and will shaddow 1's place
+//Display Score  
    
 /*
  * This will be using custom Library that is a work in progress.
