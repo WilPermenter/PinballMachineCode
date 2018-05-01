@@ -49,8 +49,8 @@ int pointSpinnyLast = 0; // Will store the var and will be used to compare to th
 
 int scoreOnePlace = 0; // Second From Right 1's place
 int scoreTenPlace = 0;// Third From Right 10's place
-int scoreHundPlace = 0; // Most Left One  100's Place
-int scoreThousPlace = 0; // Most Left One  1000's Place
+int scoreHundPlace = 0; // Most Left One 100's Place
+int scoreThousPlace = 0; // Most Left One 1000's Place
 
 bool scoreChange = true; //If score needs to be updated will be true
 
@@ -78,7 +78,7 @@ void setup() {
   pinMode(8,OUTPUT);
   pinMode(7,OUTPUT);
   pinMode(6,OUTPUT);
-  pinMode(5,OUTPUT);
+  pinMode(5,OUTPUT); // 2-5 are for ABCD see pin layout chart.
   pinMode(4,OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(2,OUTPUT);
@@ -129,7 +129,7 @@ int   spinnyNum = analogRead(spinnyPin);
     scoreOnePlace += 5;// adds ~ 5 points per spin might be off a bit due to delays in our sevenseg.cpp
     latch2 = 0;
   }
-  if(spinnyNum <10){
+  if(spinnyNum <10){   // This is for the makeshift encoder.
     latch2= 1;
   }
   
@@ -170,7 +170,7 @@ if(scoreHundPlace >= 10){                     //if tens place is 10 then will ca
   scoreThousPlace  += 1;
 }
 
-   Serial.print(scoreThousPlace);    // Prints Score
+   Serial.print(scoreThousPlace);    // Prints Score Note: do this inside the loop so it only sends it if it needs to so its not spammed :)
   Serial.print(scoreHundPlace);
   Serial.print(scoreTenPlace);
    Serial.println(scoreOnePlace); 
