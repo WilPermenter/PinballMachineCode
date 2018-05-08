@@ -7,7 +7,7 @@ SevenSeg::SevenSeg(bool displayMsg){
 void SevenSeg::begin(int baudRate){
   Serial.begin(baudRate);
   if(_msg) {
-    //Serial.println("SevenSeg Library Initiated");
+    Serial.println("SevenSeg Library Initiated");
   }
 }
 

@@ -61,7 +61,18 @@ int scoreNumber = 0; //the number to be displayed
 int latch = 0; //latching for preventing over count on score
 
 int latch2 = 0;//
-    
+
+int bonusBool = 0;
+
+int bonusRand = 0;
+
+unsigned long bonusTime = 0;
+
+unsigned long bonusTime1= 0;
+
+unsigned long time1 = 0;
+
+int holder = 0;
 void setup() {
 
   //setup
@@ -82,7 +93,7 @@ void setup() {
   pinMode(4,OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(2,OUTPUT);
-
+  pinMode(1,OUTPUT); // drop target leds
   
   //Pins For LED Control
   
@@ -98,9 +109,49 @@ void setup() {
 
 ledshow.startUp();  //does start up animation
 
+
+
 }
   
 void loop() {
+//bonus
+
+ bonusTime = millis();
+
+   if(bonusTime <= 300){   //generate number for bonus
+    
+     bonusRand = random(0,9);
+     Serial.println(bonusRand);
+  
+     
+   }
+   
+   if(bonusRand == scoreTenPlace){ //random number 
+    bonusBool = 1;
+   }
+  
+ if(bonusBool == 1){
+    ledshow.bonus(time1);
+    
+
+  Serial.println("bonus!");
+  }else{
+    digitalWrite(1,HIGH);
+  }
+   
+  if(bonusTime >1000){  // rest after set time
+    
+    bonusBool = 0;
+    
+    bonusTime1 = bonusTime;
+
+    bonusTime = 0;
+
+  }
+   
+  
+
+
 
 
 // Score Detection
@@ -108,14 +159,25 @@ void loop() {
 pointAdd = analogRead(scorePin); //reads For point
 
 if(pointAdd > pointAddTen && pointAdd < pointAddTwent && latch == 0){ //Will Run if was +10
-  scoreTenPlace += 1; //Adds Points to Score
-  
+
+
+  if(bonusBool == 1){
+scoreTenPlace +=2; // Adds 2x points if bonus Time
+     }else{
+scoreTenPlace += 1; //Adds Points to Score
+     }
+     
   scoreChange = true; //Tells us to update Display
 
   latch =1; //sets latch to 1 bc a hit was detecteed
   }else if(pointAdd > pointAddTwent && latch == 0){ //Will run if +20
-  scoreTenPlace += 2; //Adds Points to Score
-
+    
+     if(bonusBool == 1){
+scoreTenPlace +=4; // Adds 2x points if bonus Time
+     }else{
+scoreTenPlace += 2; //Adds Points to Score
+     }
+     
   scoreChange = true;
 
   latch = 1; // sets latch to 1 bc hit was detected
@@ -126,7 +188,12 @@ int   spinnyNum = analogRead(spinnyPin);
    spinnyNum -= 1006; 
   if(spinnyNum > 10 && latch2 == 1){
     scoreChange = true;
-    scoreOnePlace += 5;// adds ~ 5 points per spin might be off a bit due to delays in our sevenseg.cpp
+    if(bonusBool == 1){
+scoreTenPlace +=1; // Adds 2x points if bonus Time
+     }else{
+scoreOnePlace += 5; //Adds ~5 points per spin might be off due to delays in our sevenseg.cpp
+     }
+     
     latch2 = 0;
   }
   if(spinnyNum <10){   // This is for the makeshift encoder.

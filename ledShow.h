@@ -30,13 +30,19 @@ class ledShow {
 
   int waitTime = 500;
 
+  int tick = 1;
+  
   void startUp();
   void ledLoop();
   void loss();
-
+  void bonus(long delayTime0);
+  
+  unsigned long delayTime1;
+  unsigned long delayDiff;
 
   private:
    bool _msg;
+   
 };
 
 #endif 

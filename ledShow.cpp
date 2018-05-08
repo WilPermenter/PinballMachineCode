@@ -50,7 +50,22 @@ digitalWrite(2,HIGH);
   
 }
 
-
+void ledShow::bonus(long delayTime0){
+  
+   delayDiff = delayTime0 - delayTime1; //math find diff
+   
+   if(delayDiff > 100 && tick == 1){
+     digitalWrite(1,HIGH);
+     tick = 0;
+   }
+   
+   if(delayDiff > 100 && tick == 0){
+    digitalWrite(1,LOW);
+    tick = 1;
+   }
+ delayTime0 = delayTime1;
+  
+}
 
 
 
